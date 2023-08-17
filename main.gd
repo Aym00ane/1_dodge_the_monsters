@@ -10,16 +10,20 @@ func new_game():
 	get_tree().call_group("mobs","queue_free")
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$Music.play()
 	$HUD.show_message("Get Ready...")
 	await $StartTimer.timeout
 	$ScoreTimer.start()
 	$MobTimer.start()
+
 	
 	
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
+	$Music.stop()
+	$DeathSound.play()
 	
 func _ready():
 	randomize()
